@@ -1,0 +1,20 @@
+1)\sql
+2)\connect root@localhost
+3)CREATE USER 'developer'@'localhost' IDENTIFIED BY '**********';
+4)FLUSH PRIVILEGES;
+5)CREATE user 'viewer'@'localhost' IDENTIFIED BY '*********';
+6)FLUSH PRIVILEGES;
+7)CREATE user 'writer'@'localhost' IDENTIFIED BY '**********';
+8)FLUSH PRIVILEGES;
+9)SELECT User from mysql.user;
+10)CREATE ROLE 'app_developer', 'app_read', 'app_write';
+11)GRANT ALL ON *.* TO 'app_developer';
+12)GRANT SELECT ON *.* TO 'app_read';
+13)GRANT INSERT, UPDATE, DELETE ON *.* TO 'app_write';
+14)GRANT 'app_developer' TO 'developer'@'localhost';
+15)GRANT 'app_read' TO 'viewer'@'localhost';
+16)GRANT 'app_write' TO 'writer'@'localhost';
+17)CREATE DATABASE IF NOT EXISTS newdb;
+18)GRANT ALL PRIVILEGES ON newdb . * TO 'developer'@'localhost';
+19)GRANT SELECT ON newdb.* TO 'viewer'@'localhost';
+20)GRANT INSERT, UPDATE, DELETE ON newdb.* TO 'writer'@'localhost';
